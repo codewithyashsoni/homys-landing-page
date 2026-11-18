@@ -1,0 +1,89 @@
+@import url('https://googleapis.com');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.landing-page-container{
+  background-color: #0C1636;
+  color :white;
+  width: 100%;
+  min-height: 100vh;
+}
+.hero-section{
+  top: 162px;
+  left: 191px;
+  position: absolute;
+  width: 1083.75px;
+  height: 132px;
+  color: #ffffff;
+  font-family: "DM Serif Disply", serif;
+  font-weight: 400;
+  font-size: 47.81px;
+  text-align: center;
+  line-height: 1.3
+}
+.highlight{
+  color: #FDB526;
+}
+.info-section{
+  width: 613px;
+  height:123px;
+  position: absolute;
+  top: 315px;
+  left: 424px;
+  font-family: 'Poppins', serif;
+  font-weight: 200;
+  font-style: ExtraLight;
+  font-size: 27.04px;
+  line-height: 1.5 ;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #ffffff;
+}
+.chat-1-text{
+  position: absolute;
+  top: 516px;
+  left: 667px;
+  width: 548px;
+  height: 142.6px;
+  border-radius: 29.21px 29.21px 0 29.21px;
+  background-color: #FFFFFF12;
+  color: #ffffff;
+  padding: 15.3px 20.17px 15.3px 20.17px;
+  gap: 6.95px;
+  font-size: 22px;
+  text-align: right;
+}
+.chat-2-text{
+  position: absolute;
+  top: 714px;
+  left: 265px;
+  width: 548px;
+  height: 86.6px;
+  border-radius: 29.21px 29.21px 29.21px 0;
+  background-color: #FFFFFF12;
+  color: #ffffff;
+  padding: 15.3px 20.17px 15.3px 20.17px;
+  gap: 6.95px;
+  font-size: 22px;
+  text-align: left;
+}
+.user-image{
+  position: absolute;
+  top: 627px;
+  left: 1236px;
+  height: 64px;
+  width: 64px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.agent-icon{
+  position: absolute;
+  top: 766px;
+  left: 176px;
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+}
