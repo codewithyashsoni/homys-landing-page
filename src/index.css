@@ -1,89 +1,318 @@
-@import url('https://googleapis.com');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@200;300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.landing-page-container{
-  background-color: #0C1636;
-  color :white;
-  width: 100%;
-  min-height: 100vh;
+
+html {
+    scroll-behavior: smooth;
 }
-.hero-section{
-  top: 162px;
-  left: 191px;
-  position: absolute;
-  width: 1083.75px;
-  height: 132px;
-  color: #ffffff;
-  font-family: "DM Serif Disply", serif;
-  font-weight: 400;
-  font-size: 47.81px;
-  text-align: center;
-  line-height: 1.3
+
+.landing-page-container {
+    background-color: #0C1636;
+    color: white;
+    width: 100%;
+    min-height: 900px;
+    position: relative;
+    overflow: hidden;
 }
-.highlight{
-  color: #FDB526;
+
+/* HERO SECTION */
+
+.hero-section {
+    position: absolute;
+    top: 162px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90%, 1083.75px);
+    color: #ffffff;
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    font-size: clamp(30px, 3.3vw, 47.81px);
+    text-align: center;
+    line-height: 1.3;
 }
-.info-section{
-  width: 613px;
-  height:123px;
-  position: absolute;
-  top: 315px;
-  left: 424px;
-  font-family: 'Poppins', serif;
-  font-weight: 200;
-  font-style: ExtraLight;
-  font-size: 27.04px;
-  line-height: 1.5 ;
-  letter-spacing: 0%;
-  text-align: center;
-  color: #ffffff;
+
+.highlight {
+    color: #FDB526;
 }
-.chat-1-text{
-  position: absolute;
-  top: 516px;
-  left: 667px;
-  width: 548px;
-  height: 142.6px;
-  border-radius: 29.21px 29.21px 0 29.21px;
-  background-color: #FFFFFF12;
-  color: #ffffff;
-  padding: 15.3px 20.17px 15.3px 20.17px;
-  gap: 6.95px;
-  font-size: 22px;
-  text-align: right;
+
+/* TEXT REVEAL */
+
+.reveal-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
-.chat-2-text{
-  position: absolute;
-  top: 714px;
-  left: 265px;
-  width: 548px;
-  height: 86.6px;
-  border-radius: 29.21px 29.21px 29.21px 0;
-  background-color: #FFFFFF12;
-  color: #ffffff;
-  padding: 15.3px 20.17px 15.3px 20.17px;
-  gap: 6.95px;
-  font-size: 22px;
-  text-align: left;
+
+.reveal.is-visible .reveal-line {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
 }
-.user-image{
-  position: absolute;
-  top: 627px;
-  left: 1236px;
-  height: 64px;
-  width: 64px;
-  object-fit: cover;
-  border-radius: 50%;
+
+.hero-section.reveal.is-visible .reveal-line:nth-child(2) {
+    transition-delay: 1s;
 }
-.agent-icon{
-  position: absolute;
-  top: 766px;
-  left: 176px;
-  height: 70px;
-  width: 70px;
-  object-fit: cover;
-  border-radius: 50%;
+
+/* INFORMATION SECTION */
+
+.info-section {
+    width: min(90%, 613px);
+    position: absolute;
+    top: 315px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    font-size: clamp(17px, 1.9vw, 25px);
+    line-height: 1.5;
+    text-align: center;
+    color: #ffffff;
+    opacity: 0.55;
+}
+
+.info-section.reveal.is-visible .reveal-line:nth-child(1) {
+    transition-delay: 0.8s;
+}
+
+.info-section.reveal.is-visible .reveal-line:nth-child(2) {
+    transition-delay: 1.5s;
+}
+
+/* CHAT SECTION */
+
+.chat-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* USER MESSAGE */
+
+.chat-1-text {
+    position: absolute;
+    top: 516px;
+    right: 265px;
+    left: auto;
+    width: 548px;
+    height: 142.6px;
+    border-radius: 29.21px 29.21px 0 29.21px;
+    background-color: #FFFFFF12;
+    color: #ffffff;
+    padding: 15.3px 20.17px;
+    font-size: 22px;
+    text-align: right;
+}
+
+.user-image {
+    position: absolute;
+    top: 553px;
+    right: 176px;
+    height: 64px;
+    width: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* HOMYS MESSAGE */
+
+.chat-2-text {
+    position: absolute;
+    top: 714px;
+    left: 265px;
+    width: 548px;
+    height: 86.6px;
+    border-radius: 29.21px 29.21px 29.21px 0;
+    background-color: #FFFFFF12;
+    color: #ffffff;
+    padding: 15.3px 20.17px;
+    font-size: 22px;
+    text-align: left;
+}
+
+.agent-icon {
+    position: absolute;
+    top: 766px;
+    left: 176px;
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+/* MESSAGE APPEARANCE */
+
+.message-appear {
+    visibility: visible;
+    animation: messageReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes messageReveal {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* TYPING INDICATOR */
+
+.typing-bubble {
+    visibility: visible;
+    opacity: 1;
+    min-height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.typing-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.typing-dots span {
+    width: 9px;
+    height: 9px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    animation: typing 1.2s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 60%, 100% {
+        opacity: 0.35;
+        transform: translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(-7px);
+    }
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+    .hero-section {
+        top: 130px;
+    }
+
+    .info-section {
+        top: 280px;
+    }
+
+    .chat-1-text {
+        right: 13%;
+        width: 45%;
+    }
+
+    .user-image {
+        right: calc(13% - 76px);
+    }
+
+    .chat-2-text {
+        left: 13%;
+        width: 45%;
+    }
+
+    .agent-icon {
+        left: calc(13% - 82px);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    .landing-page-container {
+        min-height: 850px;
+    }
+
+    .hero-section {
+        top: 90px;
+        width: 92%;
+        font-size: 30px;
+    }
+
+    .info-section {
+        top: 230px;
+        width: 88%;
+        font-size: 16px;
+    }
+
+    .chat-1-text {
+        top: 400px;
+        right: 17%;
+        width: 75%;
+        min-height: 120px;
+        font-size: 15px;
+    }
+
+    .user-image {
+        top: 425px;
+        right: calc(17% - 50px);
+        width: 42px;
+        height: 42px;
+    }
+
+    .chat-2-text {
+        top: 600px;
+        left: 17%;
+        width: 75%;
+        min-height: 85px;
+        font-size: 15px;
+    }
+
+    .agent-icon {
+        top: 608px;
+        left: calc(17% - 56px);
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.message-appear {
+    animation: messageReveal 0.9s ease-out both;
+}
+
+@keyframes messageReveal {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
