@@ -15,7 +15,7 @@ html {
     background-color: #0C1636;
     color: white;
     width: 100%;
-    min-height: 900px;
+    min-height: 100vh;
     position: relative;
     overflow: hidden;
 }
@@ -25,8 +25,7 @@ html {
 .hero-section {
     position: absolute;
     top: 162px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 191px;
     width: min(90%, 1083.75px);
     color: #ffffff;
     font-family: "DM Serif Display", serif;
@@ -55,9 +54,6 @@ html {
     transition-delay: 0.6s;
 }
 
-.hero-section.reveal.is-visible .reveal-line:nth-child(2) {
-    transition-delay: 1s;
-}
 
 /* INFORMATION SECTION */
 
@@ -65,25 +61,19 @@ html {
     width: min(90%, 613px);
     position: absolute;
     top: 315px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 424px;
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
-    font-size: clamp(17px, 1.9vw, 25px);
+    font-size: clamp(17px, 1.9vw, 27px);
     line-height: 1.5;
     text-align: center;
     color: #ffffff;
     opacity: 0.55;
 }
 
-.info-section.reveal.is-visible .reveal-line:nth-child(1) {
-    transition-delay: 0.8s;
+.info-section.reveal.is-visible .reveal-line {
+    transition-delay: 1.2s;
 }
-
-.info-section.reveal.is-visible .reveal-line:nth-child(2) {
-    transition-delay: 1.5s;
-}
-
 /* CHAT SECTION */
 
 .chat-section {
@@ -98,8 +88,7 @@ html {
 .chat-1-text {
     position: absolute;
     top: 516px;
-    right: 265px;
-    left: auto;
+    left: 667px;
     width: 548px;
     height: 142.6px;
     border-radius: 29.21px 29.21px 0 29.21px;
@@ -109,11 +98,25 @@ html {
     font-size: 22px;
     text-align: right;
 }
+.bubble-right {
+    animation: bubbleFromRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes bubbleFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(80px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
 
 .user-image {
     position: absolute;
-    top: 553px;
-    right: 176px;
+    top: 627px;
+    left: 1236px;
     height: 64px;
     width: 64px;
     object-fit: cover;
@@ -135,7 +138,21 @@ html {
     font-size: 22px;
     text-align: left;
 }
+.bubble-left {
+    animation: bubbleFromLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
+@keyframes bubbleFromLeft {
+    from {
+        opacity: 0;
+        transform: translate(-80px, 40px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+}
 .agent-icon {
     position: absolute;
     top: 766px;
@@ -145,67 +162,20 @@ html {
     object-fit: cover;
     border-radius: 50%;
 }
-/* MESSAGE APPEARANCE */
-
-.message-appear {
-    visibility: visible;
-    animation: messageReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.image-appear {
+    animation: imageReveal 0.5s ease-out both;
+    animation-delay: 0.5s;
 }
 
-@keyframes messageReveal {
+@keyframes imageReveal {
     from {
         opacity: 0;
-        transform: translateY(18px) scale(0.97);
+        transform: scale(0.5);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* TYPING INDICATOR */
-
-.typing-bubble {
-    visibility: visible;
-    opacity: 1;
-    min-height: 65px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.typing-dots {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.typing-dots span {
-    width: 9px;
-    height: 9px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    animation: typing 1.2s infinite ease-in-out;
-}
-
-.typing-dots span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.typing-dots span:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-@keyframes typing {
-    0%, 60%, 100% {
-        opacity: 0.35;
-        transform: translateY(0);
-    }
-
-    30% {
-        opacity: 1;
-        transform: translateY(-7px);
+        transform: scale(1);
     }
 }
 

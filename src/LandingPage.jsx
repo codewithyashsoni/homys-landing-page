@@ -1,75 +1,17 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "./assets/image.jpg";
 import icon from "./assets/icon_yellow.png";
 
 function LandingPage() {
-    const [chatPhase, setChatPhase] = useState("waiting");
     const [startChat, setStartChat] = useState(false);
+    const [showUser, setShowUser] = useState(false);
+    const [showBot, setShowBot] = useState(false);
 
-    // Start chatbot after the information section appears
+
     useEffect(() => {
-        const infoSection = document.querySelector(".info-section");
+        const elements = document.querySelectorAll(".reveal");
 
-        if (!infoSection) return;
-
-        let timer;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    timer = setTimeout(() => {
-                        setStartChat(true);
-                    }, 2500);
-
-                    observer.disconnect();
-                }
-            },
-            {
-                threshold: 0.15,
-            }
-        );
-
-        observer.observe(infoSection);
-
-        return () => {
-            observer.disconnect();
-            clearTimeout(timer);
-        };
-    }, []);
-
-    // Control chatbot conversation sequence
-    useEffect(() => {
-        if (chatPhase === "waiting") {
-            if (startChat) {
-                setChatPhase("user-typing");
-            }
-            return;
-        }
-
-        const delays = {
-            "user-typing": 2000,
-            "user-message": 700,
-            "bot-typing": 2000,
-            "bot-message": 4500,
-        };
-
-        const nextPhase = {
-            "user-typing": "user-message",
-            "user-message": "bot-typing",
-            "bot-typing": "bot-message",
-            "bot-message": "user-typing",
-        };
-
-        const timer = setTimeout(() => {
-            setChatPhase(nextPhase[chatPhase]);
-        }, delays[chatPhase]);
-
-        return () => clearTimeout(timer);
-    }, [chatPhase, startChat]);
-
-    // Reveal sections when they enter the screen
-    useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -80,11 +22,9 @@ function LandingPage() {
                 });
             },
             {
-                threshold: 0.15,
+                threshold: 0.1,
             }
         );
-
-        const elements = document.querySelectorAll(".reveal");
 
         elements.forEach((element) => {
             observer.observe(element);
@@ -92,14 +32,23 @@ function LandingPage() {
 
         return () => observer.disconnect();
     }, []);
+    
+    useEffect(() => {
+        const timer1 = setTimeout(() => {
+            setStartChat(true);
+            setShowUser(true);
+        }, 2000);
 
-    const showUser = [
-        "user-message",
-        "bot-typing",
-        "bot-message",
-    ].includes(chatPhase);
+        const timer2 = setTimeout(() => {
+            setShowBot(true);
+        }, 3000);
 
-    const showBot = chatPhase === "bot-message";
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+        };
+    }, []);
+
 
     return (
         <div className="landing-page-container">
@@ -134,64 +83,36 @@ function LandingPage() {
             <div className="chat-section">
 
                 {/* User Chat */}
-                <div className="chat-1">
-
-                    {chatPhase === "user-typing" && (
-                        <div className="chat-1-text typing-bubble">
-                            <span className="typing-dots">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </div>
-                    )}
-
-                    {showUser && (
-                        <div className="chat-1-text message-appear">
+                {showUser && (
+                    <div className="chat-1">
+                        <div className="chat-1-text bubble-right">
                             Hi! Homys could you show me any home rent where I will get proper wind and sunlight after opening the window, 2nd floor and landlord doesn't stays nearby under 6000 in Garea area Kolkata
                         </div>
-                    )}
 
-                    {/* User image appears when chatbot starts */}
-                    {startChat && (
                         <img
                             src={Image}
                             alt="User"
-                            className="user-image"
+                            className="user-image image-appear"
                         />
-                    )}
-                </div>
+                    </div>
+                )}
 
                 {/* Homys Chat */}
-                <div className="chat-2">
-
-                    {chatPhase === "bot-typing" && (
-                        <div className="chat-2-text typing-bubble">
-                            <span className="typing-dots">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </div>
-                    )}
-
-                    {showBot && (
-                        <div className="chat-2-text message-appear">
+                {showBot && (
+                    <div className="chat-2">
+                        <div className="chat-2-text bubble-left">
                             Sure I am checked 113 home rent in this area and
                             <br />
                             found 5 best suitable rooms for you
                         </div>
-                    )}
 
-                    {/* Homys image appears when chatbot starts */}
-                    {startChat && (
                         <img
                             src={icon}
                             alt="Homys agent"
-                            className="agent-icon"
+                            className="agent-icon image-appear"
                         />
-                    )}
-                </div>
+                    </div>
+                )}
 
             </div>
         </div>
