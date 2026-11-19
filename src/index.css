@@ -11,13 +11,22 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    overflow-x: hidden;
+}
+
+#root {
+    min-height: 100vh;
+}
+
 .landing-page-container {
     background-color: #0C1636;
     color: white;
     width: 100%;
-    min-height: 100vh;
+    min-height: max(100vh, 900px);
     position: relative;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
 }
 
 /* HERO SECTION */
@@ -25,7 +34,8 @@ html {
 .hero-section {
     position: absolute;
     top: 162px;
-    left: 191px;
+    left: 50%;
+    transform: translateX(-50%);
     width: min(90%, 1083.75px);
     color: #ffffff;
     font-family: "DM Serif Display", serif;
@@ -54,14 +64,14 @@ html {
     transition-delay: 0.6s;
 }
 
-
 /* INFORMATION SECTION */
 
 .info-section {
     width: min(90%, 613px);
     position: absolute;
     top: 315px;
-    left: 424px;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
     font-size: clamp(17px, 1.9vw, 27px);
@@ -74,6 +84,7 @@ html {
 .info-section.reveal.is-visible .reveal-line {
     transition-delay: 1.2s;
 }
+
 /* CHAT SECTION */
 
 .chat-section {
@@ -88,19 +99,25 @@ html {
 .chat-1-text {
     position: absolute;
     top: 516px;
-    left: 667px;
-    width: 548px;
-    height: 142.6px;
+    left: 50%;
+    transform: translateX(0);
+    width: min(548px, 45%);
+    min-height: 142.6px;
+    height: auto;
     border-radius: 29.21px 29.21px 0 29.21px;
     background-color: #FFFFFF12;
     color: #ffffff;
     padding: 15.3px 20.17px;
     font-size: 22px;
+    line-height: 1.45;
     text-align: right;
+    overflow-wrap: break-word;
 }
+
 .bubble-right {
     animation: bubbleFromRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
 @keyframes bubbleFromRight {
     from {
         opacity: 0;
@@ -115,8 +132,8 @@ html {
 
 .user-image {
     position: absolute;
-    top: 627px;
-    left: 1236px;
+    top: 620px;
+    left: calc(50% + min(548px, 45%) + 20px);
     height: 64px;
     width: 64px;
     object-fit: cover;
@@ -128,16 +145,21 @@ html {
 .chat-2-text {
     position: absolute;
     top: 714px;
-    left: 265px;
-    width: 548px;
-    height: 86.6px;
+    left: 5%;
+    transform: translateX(-100%);
+    width: min(548px, 45%);
+    min-height: 86.6px;
+    height: auto;
     border-radius: 29.21px 29.21px 29.21px 0;
     background-color: #FFFFFF12;
     color: #ffffff;
     padding: 15.3px 20.17px;
     font-size: 22px;
+    line-height: 1.45;
     text-align: left;
+    overflow-wrap: break-word;
 }
+
 .bubble-left {
     animation: bubbleFromLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -153,15 +175,17 @@ html {
         transform: translate(0, 0) scale(1);
     }
 }
+
 .agent-icon {
     position: absolute;
     top: 766px;
-    left: 176px;
+    left: calc(50% - min(548px, 45%) - 89px);
     height: 70px;
     width: 70px;
     object-fit: cover;
     border-radius: 50%;
 }
+
 .image-appear {
     animation: imageReveal 0.5s ease-out both;
     animation-delay: 0.5s;
@@ -181,31 +205,43 @@ html {
 
 /* TABLET */
 
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
     .hero-section {
         top: 130px;
+        width: 90%;
     }
 
     .info-section {
         top: 280px;
+        width: 75%;
     }
 
     .chat-1-text {
-        right: 13%;
-        width: 45%;
+        top: 490px;
+        left: 54%;
+        width: 40%;
+        font-size: 19px;
     }
 
     .user-image {
-        right: calc(13% - 76px);
+        top: 535px;
+        left: calc(94% - 2px);
+        width: 55px;
+        height: 55px;
     }
 
     .chat-2-text {
-        left: 13%;
-        width: 45%;
+        top: 690px;
+        left: 46%;
+        width: 40%;
+        font-size: 19px;
     }
 
     .agent-icon {
-        left: calc(13% - 82px);
+        top: 735px;
+        left: calc(46% - 85px);
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -213,49 +249,94 @@ html {
 
 @media (max-width: 600px) {
     .landing-page-container {
-        min-height: 850px;
+        min-height: max(100vh, 850px);
     }
 
     .hero-section {
-        top: 90px;
+        top: 85px;
         width: 92%;
-        font-size: 30px;
+        font-size: clamp(26px, 7vw, 32px);
+        line-height: 1.3;
     }
 
     .info-section {
-        top: 230px;
+        top: 220px;
         width: 88%;
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 1.6;
     }
 
     .chat-1-text {
-        top: 400px;
-        right: 17%;
-        width: 75%;
+        top: 390px;
+        left: 10%;
+        width: 76%;
         min-height: 120px;
-        font-size: 15px;
+        padding: 13px 14px;
+        font-size: 14px;
+        line-height: 1.5;
+        border-radius: 22px 22px 0 22px;
     }
 
     .user-image {
-        top: 425px;
-        right: calc(17% - 50px);
-        width: 42px;
-        height: 42px;
+        top: 530px;
+        left: auto;
+        right: 5%;
+        width: 44px;
+        height: 44px;
     }
 
     .chat-2-text {
         top: 600px;
-        left: 17%;
-        width: 75%;
+        left: 22%;
+        width: 73%;
         min-height: 85px;
-        font-size: 15px;
+        padding: 13px 14px;
+        font-size: 14px;
+        line-height: 1.5;
+        border-radius: 22px 22px 22px 0;
     }
 
     .agent-icon {
-        top: 608px;
-        left: calc(17% - 56px);
+        top: 605px;
+        left: 7%;
         width: 48px;
         height: 48px;
+    }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+    .hero-section {
+        font-size: 26px;
+    }
+
+    .info-section {
+        font-size: 14px;
+    }
+
+    .chat-1-text {
+        left: 8%;
+        width: 78%;
+        font-size: 13px;
+    }
+
+    .chat-2-text {
+        left: 20%;
+        width: 75%;
+        font-size: 13px;
+    }
+
+    .user-image {
+        right: 3%;
+        width: 40px;
+        height: 40px;
+    }
+
+    .agent-icon {
+        left: 5%;
+        width: 44px;
+        height: 44px;
     }
 }
 
