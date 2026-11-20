@@ -1,14 +1,12 @@
-
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Image from "./assets/image.jpg";
 import icon from "./assets/icon_yellow.png";
 
 function LandingPage() {
-    const [startChat, setStartChat] = useState(false);
     const [showUser, setShowUser] = useState(false);
     const [showBot, setShowBot] = useState(false);
 
-
+    // TEXT REVEAL ANIMATION
     useEffect(() => {
         const elements = document.querySelectorAll(".reveal");
 
@@ -32,10 +30,10 @@ function LandingPage() {
 
         return () => observer.disconnect();
     }, []);
-    
+
+    // CHAT MESSAGE ANIMATION
     useEffect(() => {
         const timer1 = setTimeout(() => {
-            setStartChat(true);
             setShowUser(true);
         }, 2000);
 
@@ -49,15 +47,16 @@ function LandingPage() {
         };
     }, []);
 
-
     return (
         <div className="landing-page-container">
 
-            {/* Hero Section */}
+            {/* HERO SECTION */}
             <div className="hero-section reveal">
                 <p>
                     <span className="reveal-line">
-                        Ask your <span className="highlight">Homys</span> what you want Sunlight, long
+                        Ask your{" "}
+                        <span className="highlight">Homys</span>{" "}
+                        what you want Sunlight, long
                     </span>
 
                     <span className="reveal-line">
@@ -66,7 +65,7 @@ function LandingPage() {
                 </p>
             </div>
 
-            {/* Information Section */}
+            {/* INFORMATION SECTION */}
             <div className="info-section reveal">
                 <p>
                     <span className="reveal-line">
@@ -79,12 +78,13 @@ function LandingPage() {
                 </p>
             </div>
 
-            {/* Chat Section */}
+            {/* CHAT SECTION */}
             <div className="chat-section">
 
-                {/* User Chat */}
+                {/* USER CHAT */}
                 {showUser && (
                     <div className="chat-1">
+
                         <div className="chat-1-text bubble-right">
                             Hi! Homys could you show me any home rent where I will get proper wind and sunlight after opening the window, 2nd floor and landlord doesn't stays nearby under 6000 in Garea area Kolkata
                         </div>
@@ -94,27 +94,29 @@ function LandingPage() {
                             alt="User"
                             className="user-image image-appear"
                         />
+
                     </div>
                 )}
 
-                {/* Homys Chat */}
+                {/* HOMYS CHAT */}
                 {showBot && (
                     <div className="chat-2">
-                        <div className="chat-2-text bubble-left">
-                            Sure I am checked 113 home rent in this area and
-                            <br />
-                            found 5 best suitable rooms for you
-                        </div>
 
                         <img
                             src={icon}
                             alt="Homys agent"
                             className="agent-icon image-appear"
                         />
+
+                        <div className="chat-2-text bubble-left">
+                            Sure I am checked 113 home rent in this area and found 5 best suitable rooms for you
+                        </div>
+
                     </div>
                 )}
 
             </div>
+
         </div>
     );
 }

@@ -1,5 +1,4 @@
 
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@200;300;400;500&display=swap');
 
 * {
@@ -8,7 +7,10 @@
     box-sizing: border-box;
 }
 
-/* PAGE SCROLLING - HIDE SCROLLBAR */
+/* =================================
+   GLOBAL SETTINGS
+================================= */
+
 html {
     scroll-behavior: smooth;
     overflow-y: auto;
@@ -21,15 +23,20 @@ body::-webkit-scrollbar {
 }
 
 body {
+    width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
 #root {
+    width: 100%;
     min-height: 100vh;
 }
 
-/* LANDING PAGE */
+/* =================================
+   MAIN LANDING PAGE
+================================= */
+
 .landing-page-container {
     background-color: #0C1636;
     color: white;
@@ -39,16 +46,22 @@ body {
     overflow: visible;
 }
 
-/* HERO SECTION */
+/* =================================
+   HERO SECTION
+================================= */
+
 .hero-section {
     position: absolute;
     top: 162px;
     left: 50%;
     transform: translateX(-50%);
+
     width: min(90%, 1083.75px);
+
     color: #ffffff;
     font-family: "DM Serif Display", serif;
     font-weight: 400;
+
     font-size: clamp(30px, 3.3vw, 47.81px);
     text-align: center;
     line-height: 1.3;
@@ -58,12 +71,18 @@ body {
     color: #FDB526;
 }
 
-/* TEXT REVEAL */
+/* =================================
+   TEXT REVEAL ANIMATION
+================================= */
+
 .reveal-line {
     display: block;
     opacity: 0;
     transform: translateY(25px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
 }
 
 .reveal.is-visible .reveal-line {
@@ -72,17 +91,24 @@ body {
     transition-delay: 0.6s;
 }
 
-/* INFORMATION SECTION */
+/* =================================
+   INFORMATION SECTION
+================================= */
+
 .info-section {
     width: min(90%, 613px);
+
     position: absolute;
     top: 315px;
     left: 50%;
     transform: translateX(-50%);
+
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
+
     font-size: clamp(17px, 1.9vw, 27px);
     line-height: 1.5;
+
     text-align: center;
     color: #ffffff;
     opacity: 0.55;
@@ -92,7 +118,10 @@ body {
     transition-delay: 1.2s;
 }
 
-/* CHAT SECTION */
+/* =================================
+   CHAT SECTION - DESKTOP
+================================= */
+
 .chat-section {
     position: absolute;
     top: 0;
@@ -100,34 +129,51 @@ body {
     width: 100%;
 }
 
-/* USER CHAT ROW */
+/* =================================
+   USER CHAT ROW
+================================= */
+
 .chat-1 {
     position: absolute;
+
     top: 516px;
     right: 4%;
+
     width: min(640px, 92%);
+
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
+
     gap: 12px;
 }
 
 /* USER MESSAGE */
+
 .chat-1-text {
     flex: 1;
     min-width: 0;
+
     max-width: 548px;
     min-height: 142.6px;
+
     height: auto;
+
     border-radius: 29.21px 29.21px 0 29.21px;
+
     background-color: #FFFFFF12;
     color: #ffffff;
+
     padding: 15.3px 20.17px;
+
     font-size: 22px;
     line-height: 1.45;
+
     text-align: right;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
 }
+
+/* USER MESSAGE ANIMATION */
 
 .bubble-right {
     animation: bubbleFromRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -138,6 +184,7 @@ body {
         opacity: 0;
         transform: translateX(80px) scale(0.9);
     }
+
     to {
         opacity: 1;
         transform: translateX(0) scale(1);
@@ -145,44 +192,66 @@ body {
 }
 
 /* USER IMAGE */
+
 .user-image {
     flex-shrink: 0;
+
     width: 64px;
     height: 64px;
+
     object-fit: cover;
     border-radius: 50%;
+
     margin-bottom: 0;
 }
 
-/* HOMYS CHAT ROW */
+/* =================================
+   HOMYS CHAT ROW
+================================= */
+
 .chat-2 {
     position: absolute;
+
     top: 714px;
     left: 4%;
+
     width: min(640px, 92%);
+
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
+
     gap: 12px;
 }
 
 /* HOMYS MESSAGE */
+
 .chat-2-text {
     flex: 1;
     min-width: 0;
+
     max-width: 548px;
     min-height: 86.6px;
+
     height: auto;
+
     border-radius: 29.21px 29.21px 29.21px 0;
+
     background-color: #FFFFFF12;
     color: #ffffff;
+
     padding: 15.3px 20.17px;
+
     font-size: 22px;
     line-height: 1.45;
+
     text-align: left;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+
     order: 2;
 }
+
+/* HOMYS MESSAGE ANIMATION */
 
 .bubble-left {
     animation: bubbleFromLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -193,6 +262,7 @@ body {
         opacity: 0;
         transform: translate(-80px, 40px) scale(0.9);
     }
+
     to {
         opacity: 1;
         transform: translate(0, 0) scale(1);
@@ -200,14 +270,20 @@ body {
 }
 
 /* HOMYS IMAGE */
+
 .agent-icon {
     flex-shrink: 0;
+
     width: 70px;
     height: 70px;
+
     object-fit: cover;
     border-radius: 50%;
+
     order: 1;
 }
+
+/* IMAGE ANIMATION */
 
 .image-appear {
     animation: imageReveal 0.5s ease-out both;
@@ -219,14 +295,19 @@ body {
         opacity: 0;
         transform: scale(0.5);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
     }
 }
 
-/* LARGE DESKTOP */
+/* =================================
+   LARGE DESKTOP
+================================= */
+
 @media (min-width: 1440px) {
+
     .chat-1 {
         right: max(4%, calc((100% - 1200px) / 2));
     }
@@ -234,31 +315,102 @@ body {
     .chat-2 {
         left: max(4%, calc((100% - 1200px) / 2));
     }
+
 }
 
-/* TABLET AND SMALL LAPTOP */
+/* =================================
+   TABLET AND SMALL LAPTOP
+================================= */
+
 @media (max-width: 1023px) {
-    .hero-section {
-        top: 130px;
-        width: 90%;
+
+    .landing-page-container {
+        min-height: 100svh;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 110px 5% 70px;
+        overflow: hidden;
     }
+
+    /* HEADING */
+
+    .hero-section {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+
+        width: 100%;
+
+        font-size: clamp(32px, 5vw, 44px);
+        line-height: 1.3;
+    }
+
+    /* SUBTITLE */
 
     .info-section {
-        top: 280px;
-        width: 75%;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+
+        width: min(90%, 700px);
+
+        margin-top: 25px;
+
+        font-size: clamp(17px, 2.2vw, 22px);
+        line-height: 1.6;
     }
 
+    /* CHAT SECTION */
+
+    .chat-section {
+        position: relative;
+        top: auto;
+        left: auto;
+
+        width: 100%;
+        max-width: 850px;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 65px;
+        margin-top: 85px;
+    }
+
+    /* USER ROW */
+
     .chat-1 {
-        top: 490px;
-        right: 4%;
-        width: 92%;
-        gap: 10px;
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+
+        gap: 12px;
     }
 
     .chat-1-text {
+        flex: 1;
+        min-width: 0;
+
+        max-width: 700px;
+        min-height: 0;
+
+        padding: 16px 18px;
+
         font-size: 19px;
-        min-height: 120px;
-        padding: 14px 16px;
+        line-height: 1.5;
     }
 
     .user-image {
@@ -266,143 +418,294 @@ body {
         height: 55px;
     }
 
+    /* HOMYS ROW */
+
     .chat-2 {
-        top: 690px;
-        left: 4%;
-        width: 92%;
-        gap: 10px;
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        gap: 12px;
     }
 
     .chat-2-text {
+        flex: 1;
+        min-width: 0;
+
+        max-width: 700px;
+        min-height: 0;
+
+        padding: 16px 18px;
+
         font-size: 19px;
-        min-height: 86px;
-        padding: 14px 16px;
+        line-height: 1.5;
     }
 
     .agent-icon {
-        width: 60px;
-        height: 60px;
+        width: 58px;
+        height: 58px;
     }
+
 }
 
-/* MOBILE */
+/* =================================
+   MOBILE - ALL PHONES
+================================= */
+
 @media (max-width: 600px) {
+
+    /* MAIN CONTAINER */
+
     .landing-page-container {
-        min-height: max(100vh, 850px);
+        min-height: 100svh;
+        height: auto;
+
+        padding: 65px 14px 65px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        overflow: hidden;
+    }
+
+    /* HERO HEADING */
+
+    .hero-section {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+
+        width: 100%;
+
+        font-size: clamp(25px, 6vw, 36px);
+        line-height: 1.3;
+
+        text-align: center;
+    }
+
+    /* SUBTITLE */
+
+    .info-section {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+
+        width: 95%;
+
+        margin-top: 18px;
+
+        font-size: clamp(13px, 3.8vw, 16px);
+        line-height: 1.6;
+
+        text-align: center;
+    }
+
+    /* CHAT SECTION */
+
+    .chat-section {
+        position: relative;
+        top: auto;
+        left: auto;
+
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: clamp(45px, 12vw, 70px);
+
+        margin-top: clamp(55px, 13vw, 80px);
+    }
+
+    /* USER CHAT ROW */
+
+    .chat-1 {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+
+        gap: 9px;
+    }
+
+    /* USER MESSAGE */
+
+    .chat-1-text {
+        flex: 1;
+        min-width: 0;
+
+        max-width: none;
+        min-height: 0;
+        height: auto;
+
+        padding: 13px 14px;
+
+        font-size: clamp(13px, 3.5vw, 15px);
+        line-height: 1.5;
+
+        text-align: right;
+
+        border-radius: 22px 22px 0 22px;
+
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+
+    /* USER IMAGE */
+
+    .user-image {
+        flex-shrink: 0;
+
+        width: clamp(38px, 11vw, 46px);
+        height: clamp(38px, 11vw, 46px);
+
+        object-fit: cover;
+        border-radius: 50%;
+
+        margin-bottom: 0;
+    }
+
+    /* HOMYS CHAT ROW */
+
+    .chat-2 {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        gap: 9px;
+    }
+
+    /* HOMYS MESSAGE */
+
+    .chat-2-text {
+        flex: 1;
+        min-width: 0;
+
+        max-width: none;
+        min-height: 0;
+        height: auto;
+
+        padding: 13px 14px;
+
+        font-size: clamp(13px, 3.5vw, 15px);
+        line-height: 1.5;
+
+        text-align: left;
+
+        border-radius: 22px 22px 22px 0;
+
+        overflow-wrap: anywhere;
+        word-break: normal;
+
+        order: 2;
+    }
+
+    /* HOMYS IMAGE */
+
+    .agent-icon {
+        flex-shrink: 0;
+
+        width: clamp(42px, 11vw, 48px);
+        height: clamp(42px, 11vw, 48px);
+
+        object-fit: cover;
+        border-radius: 50%;
+
+        order: 1;
+    }
+
+}
+
+/* =================================
+   SMALL PHONES
+================================= */
+
+@media (max-width: 380px) {
+
+    .landing-page-container {
+        padding-left: 11px;
+        padding-right: 11px;
     }
 
     .hero-section {
-        top: 85px;
-        width: 92%;
-        font-size: clamp(26px, 7vw, 32px);
-        line-height: 1.3;
+        font-size: clamp(24px, 7vw, 27px);
     }
 
     .info-section {
-        top: 220px;
-        width: 88%;
-        font-size: 15px;
+        width: 98%;
+        font-size: 13px;
         line-height: 1.6;
     }
 
-    /* USER CHAT */
-    .chat-1 {
-        top: 390px;
-        right: 4%;
-        width: 92%;
-        gap: 9px;
-        align-items: flex-end;
+    .chat-section {
+        gap: 48px;
+        margin-top: 55px;
     }
 
-    .chat-1-text {
-        min-height: 120px;
-        max-width: none;
-        padding: 13px 14px;
-        font-size: 14px;
-        line-height: 1.5;
-        border-radius: 22px 22px 0 22px;
-    }
-
-    .user-image {
-        width: 44px;
-        height: 44px;
-    }
-
-    /* HOMYS CHAT */
+    .chat-1,
     .chat-2 {
-        top: 600px;
-        left: 4%;
-        width: 92%;
-        gap: 9px;
-        align-items: flex-end;
-    }
-
-    .chat-2-text {
-        min-height: 85px;
-        max-width: none;
-        padding: 13px 14px;
-        font-size: 14px;
-        line-height: 1.5;
-        border-radius: 22px 22px 22px 0;
-    }
-
-    .agent-icon {
-        width: 48px;
-        height: 48px;
-    }
-}
-
-/* SMALL MOBILE */
-@media (max-width: 380px) {
-    .hero-section {
-        font-size: 26px;
-    }
-
-    .info-section {
-        font-size: 14px;
-    }
-
-    .chat-1 {
-        width: 94%;
-        right: 3%;
         gap: 7px;
     }
 
-    .chat-1-text {
+    .chat-1-text,
+    .chat-2-text {
+        padding: 11px;
         font-size: 13px;
-        padding: 12px;
+        line-height: 1.5;
     }
 
     .user-image {
-        width: 40px;
-        height: 40px;
-    }
-
-    .chat-2 {
-        width: 94%;
-        left: 3%;
-        gap: 7px;
-    }
-
-    .chat-2-text {
-        font-size: 13px;
-        padding: 12px;
+        width: 38px;
+        height: 38px;
     }
 
     .agent-icon {
-        width: 44px;
-        height: 44px;
+        width: 42px;
+        height: 42px;
     }
+
 }
 
-/* EXTRA SMALL MOBILE */
+/* =================================
+   EXTRA SMALL PHONES
+================================= */
+
 @media (max-width: 340px) {
+
+    .landing-page-container {
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
     .hero-section {
         font-size: 24px;
     }
 
     .info-section {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .chat-1-text,
@@ -420,10 +723,15 @@ body {
         width: 40px;
         height: 40px;
     }
+
 }
 
-/* REDUCED MOTION */
+/* =================================
+   REDUCED MOTION
+================================= */
+
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -431,20 +739,33 @@ body {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
     }
+
 }
 
-/* MESSAGE APPEARANCE */
+/* =================================
+   MESSAGE APPEARANCE
+================================= */
+
 .message-appear {
     animation: messageReveal 0.9s ease-out both;
 }
 
 @keyframes messageReveal {
+
     from {
         opacity: 0;
         transform: translateY(18px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
+
+}
+/* Image positioning adjustment */
+.user-image,
+.agent-icon {
+    position: relative;
+    top: 8px;
 }
