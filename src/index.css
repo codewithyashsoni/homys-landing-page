@@ -334,6 +334,7 @@ body {
 .old-section{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 38px;
 }
 .old-section-para{
@@ -347,6 +348,7 @@ body {
 .new-section{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 25px;
 }
 .new-section-para{
