@@ -44,7 +44,7 @@ body {
 
 .landing-page-container {
     width: 100%;
-    min-height: 1024px;
+    min-height: 900px;
     position: relative;
     overflow: visible;
 }
@@ -305,72 +305,359 @@ body {
     }
 }
 
-.advantages-page-container{
-    width: 100%;
-    min-height: 1056px;
-    position: relative;
-    overflow: visible;
-}
-.heading-container{
-    width: 100%;
-    position: absolute;
-    top: 74px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 76px;
-    font-family: "DM Serif Display", serif;
-    font-weight: 400;
-    font-size: 42px;
-}
-.advantage-page-sections{
-    width: 100%;
-    position: absolute;
-    top: 222px;
-    padding: 0 76px;
-    display: flex;
-    justify-content: space-between;
 
+/* =================================
+   ADVANTAGES SECTION
+================================= */
+
+.advantages-page-container {
+    width: 100%;
+    min-height: auto;
+    position: relative;
+    padding: clamp(65px, 8vw, 110px) clamp(18px, 5.3vw, 76px) 110px;
+    overflow: hidden;
+    isolation: isolate;
+    padding-top: 60px;
 }
-.old-section{
-    display: flex;
-    flex-direction: column;
-    gap: 38px;
+
+/* SUBTLE DECORATIVE EFFECT */
+
+.advantages-page-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 35%,
+            rgba(60, 110, 210, 0.12),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 85% 65%,
+            rgba(40, 90, 190, 0.13),
+            transparent 40%
+        );
+
+    filter: blur(25px);
 }
-.old-section-para{
-    padding: 10px;
-    background-color: #FFFFFF;
-    color: #000000;
-    font-size: 30px;
-    max-width: 528px;
-    line-height: 1.3;
-}
-.new-section{
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-.new-section-para{
-    padding: 14px 37px;
-    background-color: #010921A8;
-    color: #FFFFFF;
-    text-align: right;
-    font-size: 30px;
-    max-width: 576px;
+
+/* MAIN HEADING */
+
+.advantages-title {
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
     line-height: 1.2;
-    border-radius: 25px;
+    text-align: left;
+    color: #ffffff;
+
+    margin-bottom: clamp(35px, 5vw, 65px);
 }
-.divider{
-    height: 715px;
-    width: 6px;
-    margin: auto 0;
-    background-color: #FDB526;
-    clip-path: polygon(
-        50% 0%,
-        100% 50%,
-        50% 100%,
-        0% 50%
+
+/* COMPARISON LAYOUT */
+
+.comparison-layout {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 5px minmax(0, 1fr);
+
+    column-gap: clamp(18px, 3.5vw, 48px);
+    align-items: stretch;
+}
+
+/* BOTH COLUMNS */
+
+.comparison-column {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* COLUMN HEADINGS */
+
+.comparison-heading {
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(25px, 3vw, 38px);
+    font-weight: 400;
+    line-height: 1.3;
+
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.old-column .comparison-heading {
+    text-align: left;
+}
+
+.new-column .comparison-heading {
+    text-align: left;
+}
+
+/* OLD AND NEW CARD LISTS */
+
+.old-section,
+.new-section {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2vw, 25px);
+}
+
+/* OLD SYSTEM CARDS */
+
+.old-section-para {
+    width: 100%;
+    min-height: 90px;
+
+    display: flex;
+    align-items: center;
+
+    padding: clamp(16px, 2vw, 24px);
+
+    background-color: #ffffff;
+    color: #17213b;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(15px, 1.6vw, 19px);
+    font-weight: 400;
+    line-height: 1.55;
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* HOMYS CARDS */
+
+.new-section-para {
+    width: 100%;
+    min-height: 90px;
+
+    display: flex;
+    align-items: center;
+
+    padding: clamp(16px, 2vw, 24px);
+
+    background: linear-gradient(
+        135deg,
+        #14234c,
+        #09132e
     );
+
+    color: #ffffff;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(15px, 1.6vw, 19px);
+    font-weight: 400;
+    line-height: 1.55;
+
+    text-align: left;
+
+    border: 1px solid rgba(100, 150, 255, 0.18);
+    border-radius: 16px;
+
+    box-shadow: 0 5px 22px rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
+
+/* CARD HOVER EFFECTS */
+
+.old-section-para:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.new-section-para:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(80, 150, 255, 0.55);
+
+    box-shadow:
+        0 12px 30px rgba(30, 100, 255, 0.22);
+}
+
+/* YELLOW VERTICAL DIVIDER */
+
+.divider {
+    width: 5px;
+    height: auto;
+
+    background: linear-gradient(
+        to bottom,
+        #ffd36b,
+        #fdb526,
+        #ffd36b
+    );
+
+    border-radius: 10px;
+    align-self: stretch;
+}
+
+/* =================================
+   SCROLL REVEAL ANIMATION
+================================= */
+
+.reveal-item {
+    opacity: 0;
+    transform: translateY(28px);
+
+    transition:
+        opacity 0.75s ease,
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =================================
+   TABLETS
+================================= */
+
+@media (max-width: 900px) {
+
+    .advantages-page-container {
+        padding: 70px 35px 85px;
+    }
+
+    .comparison-layout {
+        column-gap: 22px;
+    }
+
+    .comparison-heading {
+        font-size: clamp(24px, 3.5vw, 32px);
+        margin-bottom: 24px;
+    }
+
+    .old-section-para,
+    .new-section-para {
+        min-height: 85px;
+        padding: 15px;
+        font-size: 15px;
+        border-radius: 13px;
+    }
+
+    .old-section,
+    .new-section {
+        gap: 17px;
+    }
+}
+/* =================================
+   MOBILE DEVICES
+================================= */
+
+@media (max-width: 650px) {
+
+    .advantages-page-container {
+        padding: 65px 18px 75px;
+    }
+
+    .advantages-title {
+        font-size: clamp(28px, 7.5vw, 28px);
+        text-align: center;
+        margin-bottom: 38px;
+    }
+
+    /* STACK COLUMNS ON MOBILE */
+
+    .comparison-layout {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 28px;
+    }
+
+    .comparison-heading {
+        font-size: clamp(23px, 5.5vw, 28px);
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .old-section,
+    .new-section {
+        gap: 15px;
+    }
+
+    .old-section-para,
+    .new-section-para {
+        min-height: 75px;
+        padding: 16px;
+        font-size: clamp(13px, 3.5vw, 15px);
+        line-height: 1.55;
+        border-radius: 13px;
+    }
+
+    /* HORIZONTAL YELLOW DIVIDER */
+
+    .divider {
+        width: min(45%, 150px);
+        height: 4px;
+        justify-self: center;
+        align-self: center;
+        margin: 5px auto;
+    }
+}
+
+/* =================================
+   SMALL PHONES
+================================= */
+
+@media (max-width: 380px) {
+
+    .advantages-page-container {
+        padding: 55px 13px 65px;
+    }
+
+    .advantages-title {
+        font-size: 29px;
+    }
+
+    .comparison-heading {
+        font-size: 24px;
+    }
+
+    .old-section-para,
+    .new-section-para {
+        padding: 13px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
+/* =================================
+   REDUCED MOTION
+================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .reveal-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .old-section-para,
+    .new-section-para {
+        transition: none;
+    }
+}
+
 
 /* =================================
    LARGE DESKTOP
@@ -534,7 +821,7 @@ body {
     /* MAIN CONTAINER */
 
     .landing-page-container {
-        min-height: 100svh;
+        min-height: auto;
         height: auto;
 
         padding: 65px 14px 65px;
@@ -838,4 +1125,49 @@ body {
 .agent-icon {
     position: relative;
     top: 8px;
+}
+/* Reduced font sizes for Advantages section */
+.advantages-title {
+    font-size: clamp(28px, 3.2vw, 38px);
+}
+
+.comparison-heading {
+    font-size: clamp(22px, 2.5vw, 30px);
+}
+
+.old-section-para,
+.new-section-para {
+    font-size: clamp(13px, 1.25vw, 15px);
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .advantages-title {
+        font-size: clamp(27px, 4vw, 34px);
+    }
+
+    .comparison-heading {
+        font-size: clamp(21px, 3vw, 27px);
+    }
+
+    .old-section-para,
+    .new-section-para {
+        font-size: 14px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+    .advantages-title {
+        font-size: clamp(26px, 7vw, 32px);
+    }
+
+    .comparison-heading {
+        font-size: clamp(21px, 5vw, 26px);
+    }
+
+    .old-section-para,
+    .new-section-para {
+        font-size: clamp(13px, 3.4vw, 14px);
+    }
 }

@@ -1,49 +1,48 @@
-import { useEffect, useState } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "./assets/image.jpg";
 import icon from "./assets/icon_yellow.png";
 
-function LandingPage() {
+function LandingPage({ onSequenceComplete }) {
+    const [showHero, setShowHero] = useState(false);
+    const [showInfo, setShowInfo] = useState(false);
     const [showUser, setShowUser] = useState(false);
     const [showBot, setShowBot] = useState(false);
 
-    // TEXT REVEAL ANIMATION
+    const completeRef = useRef(onSequenceComplete);
+
     useEffect(() => {
-        const elements = document.querySelectorAll(".reveal");
+        completeRef.current = onSequenceComplete;
+    }, [onSequenceComplete]);
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("is-visible");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                threshold: 0.1,
-            }
-        );
-
-        elements.forEach((element) => {
-            observer.observe(element);
-        });
-
-        return () => observer.disconnect();
-    }, []);
-
-    // CHAT MESSAGE ANIMATION
+    // CONTROLLED ANIMATION SEQUENCE
     useEffect(() => {
         const timer1 = setTimeout(() => {
-            setShowUser(true);
-        }, 2000);
+            setShowHero(true);
+        }, 100);
 
         const timer2 = setTimeout(() => {
+            setShowInfo(true);
+        }, 1800);
+
+        const timer3 = setTimeout(() => {
+            setShowUser(true);
+        }, 4100);
+
+        const timer4 = setTimeout(() => {
             setShowBot(true);
-        }, 3000);
+        }, 5300);
+
+        const timer5 = setTimeout(() => {
+            completeRef.current?.();
+        }, 6500);
 
         return () => {
             clearTimeout(timer1);
             clearTimeout(timer2);
+            clearTimeout(timer3);
+            clearTimeout(timer4);
+            clearTimeout(timer5);
         };
     }, []);
 
@@ -51,7 +50,7 @@ function LandingPage() {
         <div className="landing-page-container">
 
             {/* HERO SECTION */}
-            <div className="hero-section reveal">
+            <div className={`hero-section reveal ${showHero ? "is-visible" : ""}`}>
                 <p>
                     <span className="reveal-line">
                         Ask your{" "}
@@ -66,7 +65,7 @@ function LandingPage() {
             </div>
 
             {/* INFORMATION SECTION */}
-            <div className="info-section reveal">
+            <div className={`info-section reveal ${showInfo ? "is-visible" : ""}`}>
                 <p>
                     <span className="reveal-line">
                         No more scrolling long list with messy filters or contacting where your requirements doesn’t
@@ -84,7 +83,6 @@ function LandingPage() {
                 {/* USER CHAT */}
                 {showUser && (
                     <div className="chat-1">
-
                         <div className="chat-1-text bubble-right">
                             Hi! Homys could you show me any home rent where I will get proper wind and sunlight after opening the window, 2nd floor and landlord doesn't stays nearby under 6000 in Garea area Kolkata
                         </div>
@@ -94,14 +92,12 @@ function LandingPage() {
                             alt="User"
                             className="user-image image-appear"
                         />
-
                     </div>
                 )}
 
                 {/* HOMYS CHAT */}
                 {showBot && (
                     <div className="chat-2">
-
                         <img
                             src={icon}
                             alt="Homys agent"
@@ -111,7 +107,6 @@ function LandingPage() {
                         <div className="chat-2-text bubble-left">
                             Sure I am checked 113 home rent in this area and found 5 best suitable rooms for you
                         </div>
-
                     </div>
                 )}
 
