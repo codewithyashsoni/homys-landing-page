@@ -529,6 +529,69 @@ body {
     transform: translateY(0);
 }
 
+.comparison-page-container{
+    min-height: 1056px;
+    position: relative;
+}
+.comparison-page-heading{
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 109px;
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    font-size: 47.81px;
+    line-height: 1.5;
+    color: #FFFFFF;
+}
+.images-container{
+    display: flex;
+}
+.pexels-marcus-img{
+    position: absolute;
+    top: 251px;
+    left: 162px;
+    width: 330px;
+    height: 412px;
+    border-radius: 54px;
+    object-fit: cover;
+}
+
+.pexels-lwh-img{
+    position: absolute;
+    top: 251px;
+    left: 881px;
+    width: 330px;
+    height: 412px;
+    border-radius: 54px;
+    object-fit: cover;
+}
+
+.comparison-page-icon{
+    position: absolute;
+    top: 318px;
+    left: 638px;
+    width: 103px;
+    height: 103px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.pros-and-cons p{
+    position: absolute;
+    top: 453px;
+    left: 546px;
+    width: 282px;
+    height: 123px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    color: #ffffff;
+    opacity: 0.6;
+    line-height: 1.5;
+    font-size: 27.04px;
+    text-align: center;
+}
+
 /* =================================
    TABLETS
 ================================= */
