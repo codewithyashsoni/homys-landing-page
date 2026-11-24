@@ -682,9 +682,10 @@ body {
     margin: 0 auto;
     line-height: 1.5;
     font-family: "DM Serif Display", serif;
-    font-size: 56.29px;
+    font-size: 54.29px;
     font-weight: 400;
     color: #FFFFFF;
+    margin-right: 6px;
 }
 .summary-banner{
     position :absolute;
@@ -804,6 +805,43 @@ body {
         opacity: 1;
         transform: none;
         transition: none;
+    }
+}
+
+/* =================================
+   COMPARISON CARD HOVER ANIMATION
+================================= */
+
+.home-comparison-card.comparison-reveal {
+    transition:
+        opacity 0.8s ease,
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.45s ease;
+}
+
+/* HOVER EFFECT - DESKTOP */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .home-comparison-card.comparison-visible:hover {
+        transform: translateY(-10px) scale(1.015);
+        filter: brightness(1.12)
+                drop-shadow(0 12px 18px rgba(253, 181, 38, 0.15));
+        z-index: 2;
+    }
+
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    .home-comparison-card.comparison-reveal {
+        transition: none;
+    }
+
+    .home-comparison-card.comparison-visible:hover {
+        transform: none;
+        filter: none;
     }
 }
 
@@ -963,7 +1001,7 @@ body {
 @media (max-width: 1023px) {
 
     .landing-page-container {
-        min-height: 100svh;
+        min-height: 80svh;
         height: auto;
 
         display: flex;
@@ -1450,5 +1488,208 @@ body {
     .old-section-para,
     .new-section-para {
         font-size: clamp(13px, 3.4vw, 14px);
+    }
+}
+
+/* =========================================
+   SUMMARY PAGE RESPONSIVENESS
+========================================= */
+
+/* TABLETS */
+
+@media (max-width: 900px) {
+
+    .summary-page-container {
+        min-height: 850px;
+        padding: 0 25px;
+    }
+
+    .summary-bg {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        object-fit: cover;
+    }
+
+    .summary-info {
+        top: 24%;
+        padding: 0 15px;
+        font-size: clamp(20px, 3.5vw, 29px);
+    }
+
+    .summary-heading {
+        top: 37%;
+        padding: 0 15px;
+        font-size: clamp(34px, 5vw, 46px);
+        line-height: 1.35;
+    }
+
+    .summary-banner {
+        top: 62%;
+        height: auto;
+        min-height: 145px;
+        padding: 25px 15px;
+    }
+
+    .summary-banner p {
+        position: relative;
+        top: auto;
+        font-size: clamp(21px, 3.5vw, 29px);
+        line-height: 1.5;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE DEVICES
+========================================= */
+
+@media (max-width: 600px) {
+
+    .summary-page-container {
+        min-height: 700px;
+        padding: 0 15px;
+    }
+
+    .summary-bg {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        object-fit: cover;
+    }
+
+    .summary-info {
+        top: 19%;
+        padding: 0 5px;
+        font-size: clamp(16px, 4.2vw, 20px);
+        line-height: 1.6;
+    }
+
+    .summary-heading {
+        top: 32%;
+        padding: 0 5px;
+        font-size: clamp(27px, 7vw, 35px);
+        line-height: 1.4;
+    }
+
+    /* Remove forced desktop line breaks */
+
+    .summary-heading br,
+    .summary-banner p br {
+        display: none;
+    }
+
+    .summary-banner {
+        top: 61%;
+        left: 0;
+        width: 100%;
+        min-height: 130px;
+        height: auto;
+        padding: 25px 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .summary-banner p {
+        position: relative;
+        top: auto;
+        padding: 0;
+        font-size: clamp(17px, 4.5vw, 22px);
+        line-height: 1.6;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE DEVICES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .summary-page-container {
+        min-height: 650px;
+        padding: 0 10px;
+    }
+
+    .summary-info {
+        top: 17%;
+        font-size: 15px;
+    }
+
+    .summary-heading {
+        top: 31%;
+        font-size: 26px;
+        line-height: 1.4;
+    }
+
+    .summary-banner {
+        top: 62%;
+        min-height: 120px;
+        padding: 20px 12px;
+    }
+
+    .summary-banner p {
+        font-size: 16px;
+    }
+
+}
+
+/* SUMMARY PAGE SCROLL ANIMATIONS */
+
+.summary-bg,
+.summary-info,
+.summary-heading,
+.summary-banner {
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.summary-bg {
+    transform: scale(1.04);
+}
+
+.summary-info {
+    transform: translateY(-35px);
+    transition-delay: 0.2s;
+}
+
+.summary-heading {
+    transform: translateY(45px);
+    transition-delay: 0.4s;
+}
+
+.summary-banner {
+    transform: translateY(55px);
+    transition-delay: 0.7s;
+}
+
+/* Trigger animations when section becomes visible */
+
+.summary-page-container.is-visible .summary-bg {
+    opacity: 0.04;
+    transform: scale(1);
+}
+
+.summary-page-container.is-visible .summary-info,
+.summary-page-container.is-visible .summary-heading,
+.summary-page-container.is-visible .summary-banner {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Accessibility: respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+    .summary-bg,
+    .summary-info,
+    .summary-heading,
+    .summary-banner {
+        transition: none;
+        transform: none;
+        opacity: 1;
     }
 }

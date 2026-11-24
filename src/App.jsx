@@ -5,6 +5,7 @@ import LandingPage from './LandingPage.jsx'
 import AdavantagesPage from './AdvantagesPage.jsx'
 import ComparisonPage from './ComparisonPage.jsx'
 import SummaryPage from './SummaryPage.jsx'
+import Footer from './Components/Footer.jsx'
 
 function App() {
     const [chatFinished, setChatFinished] = useState(false)
@@ -29,6 +30,8 @@ function App() {
             {advantagesFinished && <ComparisonPage />}
 
             <SummaryPage />
+
+            <Footer />
 
         </div>
     )
