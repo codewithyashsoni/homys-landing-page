@@ -1,7 +1,7 @@
 
 import { useEffect, useRef } from 'react'
 
-function AdvantagesPage({ enabled }) {
+function AdvantagesPage({ enabled, onSequenceComplete }) {
     const sectionRef = useRef(null)
 
     useEffect(() => {
@@ -12,10 +12,25 @@ function AdvantagesPage({ enabled }) {
 
         const elements = section.querySelectorAll('.reveal-item')
 
+        const revealedElements = new Set()
+
+        const handleComplete = () => {
+            if (revealedElements.size === elements.length) {
+                onSequenceComplete?.()
+            }
+        }
+
+        if (elements.length === 0) {
+            onSequenceComplete?.()
+            return
+        }
+
         if (!('IntersectionObserver' in window)) {
             elements.forEach((element) => {
                 element.classList.add('is-visible')
             })
+
+            onSequenceComplete?.()
             return
         }
 
@@ -24,7 +39,12 @@ function AdvantagesPage({ enabled }) {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible')
+
+                        revealedElements.add(entry.target)
+
                         observer.unobserve(entry.target)
+
+                        handleComplete()
                     }
                 })
             },
@@ -36,7 +56,8 @@ function AdvantagesPage({ enabled }) {
         elements.forEach((element) => observer.observe(element))
 
         return () => observer.disconnect()
-    }, [enabled])
+
+    }, [enabled, onSequenceComplete])
 
     const oldPoints = [
         'Fake and outdated homes',
