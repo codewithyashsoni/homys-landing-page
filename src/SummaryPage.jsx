@@ -40,13 +40,15 @@ function SummaryPage() {
 
             <h2 className="summary-heading">
                 We are making the experience of finding your
-                <br /> next home smoother
+                <br className="desktop-break" />
+                {" "}next home smoother
             </h2>
 
             <div className="summary-banner">
                 <p>
                     Forget the old system of finding rent, The new era of Real Estate
-                    <br /> begins.
+                    <br className="desktop-break" />
+                    {" "}begins.
                 </p>
             </div>
         </div>
